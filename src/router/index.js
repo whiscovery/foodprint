@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home'
-import Jejumap from '@/views/Jejumap'
+import Map from '@/views/Map'
+import List from '@/views/List'
+import Data from '@/components/Data'
 
 Vue.use(VueRouter)
 
@@ -12,10 +14,21 @@ const routes = [
     component: Home
   },
   {
-    path: '/jejumap',
-    name: 'Jejumap',
-    component: Jejumap
+    path: '/list',
+    name: 'List',
+    component: List
+  },
+  {
+    path: '/map',
+    name: 'Map',
+    component: Map
+  },
+  {
+    path: '/data',
+    name: 'Data',
+    component: Data
   }
+
 ]
 
 const router = new VueRouter({

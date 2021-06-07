@@ -13,8 +13,7 @@ export default {
     data () {
         return {
             datas : [],
-            tempdata : [],
-            coords: []
+            tempdata : []
         }
     },
 created () {
@@ -60,10 +59,13 @@ created () {
                 })
             }
         },
-        translating(value) {
+        async translating(query) {
             //https://github.com/md2eoseo/jandy-ddareung/blob/e42aa5ed1ff54769ed53ec1546fc6559a63f43c1/src/api/navermaps.js
             const geocodingUrl = "/api/map-geocode/v2/geocode";
-            axios.get('https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=' + value, {
+            const coord = await axios.get(geocodingUrl, {
+                params: {
+                    query
+                },
                 headers: {
                     'X-NCP-APIGW-API-KEY-ID': 'li0futngb6',
                     'X-NCP-APIGW-API-KEY': 'Yl7ZACbrYid5I9idc7XCx80AB27vwP9CrFdgskeu'
@@ -73,9 +75,9 @@ created () {
                 return res.data
             })
             .then(data => {
-                this.coords = [data.addresses[0].x, data.addresses[0].y]
+                return [data.addresses[0].x, data.addresses[0].y]
             })
-            return this.coords
+            return coord
         },
     }
 }
